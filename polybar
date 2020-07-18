@@ -101,7 +101,7 @@ label-focused-underline = ${colors.blue}
 label-focused-padding = 2
 label-urgent = %index%
 label-urgent-foreground = ${colors.white}
-label-urgent-background = ${colors.red}
+label-urgent-underline = ${colors.red}
 label-urgent-padding = 2
 
 [module/title]
