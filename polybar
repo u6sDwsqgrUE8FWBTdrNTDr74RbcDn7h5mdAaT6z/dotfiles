@@ -1,0 +1,204 @@
+[colors]
+black = #000000
+white = #ffffff
+grey = #333333
+blue = #285577
+red = #fb4934
+bg = #000000
+fg = #ffffff
+
+[bar/config]
+bottom = true
+width = 100%
+height = 20
+background = ${colors.bg}
+foreground = ${colors.fg}
+line-size = 3
+
+font-0 = :size=8:antialias=true;2
+font-1 = Font Awesome 5 Free:size=8:antialias=true;1
+font-2 = Font Awesome 5 Free Solid:size=8:antialias=true;1
+font-3 = Font Awesome 5 Brands:size=8:antialias=true;1
+font-4 = Source Code Pro:size=15:antialias=true;5
+
+modules-left = i3 lsep_greyFG_blueBG title lsep_blueFG_bgBG
+modules-center = 
+modules-right = rsep_greyFG_bgBG pulseaudio grey2spaces rsep_blueFG_greyBG date blue2spaces risep_whiteFG_blueBG time bluespace
+
+[module/lsep_greyFG_bgBG]
+type = custom/text
+content = %{T5}
+content-background = ${colors.bg}
+content-foreground = ${colors.grey}
+
+[module/lsep_greyFG_blueBG]
+type = custom/text
+content = %{T5}
+content-background = ${colors.blue}
+content-foreground = ${colors.grey}
+
+[module/lsep_blueFG_bgBG]
+type = custom/text
+content = %{T5}
+content-background = ${colors.bg}
+content-foreground = ${colors.blue}
+
+[module/rsep_greyFG_bgBG]
+type = custom/text
+content = %{T5}
+content-background = ${colors.bg}
+content-foreground = ${colors.grey}
+
+[module/rsep_blueFG_greyBG]
+type = custom/text
+content = %{T5}
+content-background = ${colors.grey}
+content-foreground = ${colors.blue}
+
+[module/risep_whiteFG_blueBG]
+type = custom/text
+content = %{T5}
+content-background = ${colors.blue}
+content-foreground = ${colors.white}
+
+[module/risep_whiteFG_greyBG]
+type = custom/text
+content = %{T5}
+content-background = ${colors.grey}
+content-foreground = ${colors.white}
+
+[module/bluespace]
+type = custom/text
+content = " " 
+content-background = ${colors.blue}
+
+[module/blue2spaces]
+type = custom/text
+content = "  " 
+content-background = ${colors.blue}
+
+[module/greyspace]
+type = custom/text
+content = " " 
+content-background = ${colors.grey}
+
+[module/grey2spaces]
+type = custom/text
+content = "  "
+content-background = ${colors.grey}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+format-background = ${colors.grey}
+enable-scroll = false
+enable-click = false
+label-unfocused = %index%
+label-unfocused-padding = 2
+label-focused = %index%
+label-focused-foreground = ${colors.white}
+label-focused-underline = ${colors.blue}
+label-focused-padding = 2
+label-urgent = %index%
+label-urgent-foreground = ${colors.white}
+label-urgent-background = ${colors.red}
+label-urgent-padding = 2
+
+[module/title]
+type = internal/xwindow
+label = %{T1}%title%
+label-maxlen = 310
+format-background = ${colors.blue}
+format-foreground = ${colors.white}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = %{T1}<ramp-volume> <label-volume> <bar-volume>
+format-volume-background = ${colors.grey}
+format-volume-foreground = ${colors.blue}
+label-volume = %percentage%%
+label-volume-foreground = ${colors.white}
+label-muted = 
+label-muted-background = ${colors.grey}
+label-muted-foreground = ${colors.blue}
+ramp-volume-0 = 
+ramp-volume-1 = 
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.blue}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.white}
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = %{T1} <label>
+format-background = ${colors.grey}
+format-foreground = ${colors.blue}
+label-background = ${colors.grey}
+label-foreground = ${colors.white}
+
+bar-width = 10
+bar-format-background = ${colors.grey}
+bar-foreground-0 = ${colors.blue}
+bar-gradient = false
+bar-indicator = |
+bar-indicator-font = 2
+bar-indicator-background = ${colors.grey}
+bar-fill = ─
+bar-fill-background = ${colors.grey}
+bar-fill-font = 2
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-background= ${colors.grey}
+bar-empty-foreground = ${colors.white}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+poll-interval = 60
+format-charging = %{T1}<ramp-capacity> <label-charging>
+format-discharging = %{T1}<ramp-capacity> <label-discharging>
+format-charging-background = ${colors.grey}
+format-discharging-background = ${colors.grey}
+label-discharging-foreground = ${colors.white}
+label-charging-foreground = ${colors.white}
+bar-capacity-width = 10
+bar-capacity-foreground-0 = ${colors.blue}
+bar-capacity-gradient = false
+bar-capacity-indicator = |
+bar-capacity-indicator-font = 2
+bar-capacity-fill = ─
+bar-capacity-fill-font = 2
+bar-capacity-empty = ─
+bar-capacity-empty-font = 2
+bar-capacity-empty-foreground = ${colors.white}
+ramp-capacity-foreground = ${colors.blue}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+[module/date]
+type = custom/script
+exec = date "+ %a %x"
+format = %{T1} <label>
+format-background  = ${colors.blue}
+format-foreground = ${colors.grey}
+label-foreground = ${colors.white}
+interval = 1
+
+[module/time]
+type = custom/script
+exec = date "+ %T"
+format = %{T1} <label>
+format-background = ${colors.blue}
+format-foreground = ${colors.grey}
+label-foreground = ${colors.white}
+interval = 1
