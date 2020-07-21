@@ -15,55 +15,52 @@ background = ${colors.bg}
 foreground = ${colors.fg}
 line-size = 3
 
-font-0 = :size=8:antialias=true;2
-font-1 = Font Awesome 5 Free:size=8:antialias=true;1
-font-2 = Font Awesome 5 Free Solid:size=8:antialias=true;1
-font-3 = Font Awesome 5 Brands:size=8:antialias=true;1
-font-4 = Source Code Pro:size=15:antialias=true;5
+font-0 = :size=8:antialias=true;1
+font-1 = Source Code Pro:size=15:antialias=true;5
 
 modules-left = i3 lsep_greyFG_blueBG title lsep_blueFG_bgBG
 modules-center = 
-modules-right = rsep_greyFG_bgBG pulseaudio grey2spaces rsep_blueFG_greyBG date blue2spaces risep_whiteFG_blueBG time bluespace
+modules-right = rsep_greyFG_bgBG pulseaudio grey2spaces risep_whiteFG_greyBG backlight grey2spaces risep_whiteFG_greyBG battery grey2spaces rsep_blueFG_greyBG date blue2spaces risep_whiteFG_blueBG time bluespace
 
 [module/lsep_greyFG_bgBG]
 type = custom/text
-content = %{T5}
+content = %{T2}
 content-background = ${colors.bg}
 content-foreground = ${colors.grey}
 
 [module/lsep_greyFG_blueBG]
 type = custom/text
-content = %{T5}
+content = %{T2}
 content-background = ${colors.blue}
 content-foreground = ${colors.grey}
 
 [module/lsep_blueFG_bgBG]
 type = custom/text
-content = %{T5}
+content = %{T2}
 content-background = ${colors.bg}
 content-foreground = ${colors.blue}
 
 [module/rsep_greyFG_bgBG]
 type = custom/text
-content = %{T5}
+content = %{T2}
 content-background = ${colors.bg}
 content-foreground = ${colors.grey}
 
 [module/rsep_blueFG_greyBG]
 type = custom/text
-content = %{T5}
+content = %{T2}
 content-background = ${colors.grey}
 content-foreground = ${colors.blue}
 
 [module/risep_whiteFG_blueBG]
 type = custom/text
-content = %{T5}
+content = %{T2}
 content-background = ${colors.blue}
 content-foreground = ${colors.white}
 
 [module/risep_whiteFG_greyBG]
 type = custom/text
-content = %{T5}
+content = %{T2}
 content-background = ${colors.grey}
 content-foreground = ${colors.white}
 
@@ -107,98 +104,49 @@ label-urgent-padding = 2
 [module/title]
 type = internal/xwindow
 label = %{T1}%title%
-label-maxlen = 310
+label-maxlen = 260
 format-background = ${colors.blue}
 format-foreground = ${colors.white}
 
 [module/pulseaudio]
 type = internal/pulseaudio
-format-volume = %{T1}<ramp-volume> <label-volume> <bar-volume>
-format-volume-background = ${colors.grey}
-format-volume-foreground = ${colors.blue}
-label-volume = %percentage%%
+format-volume = %{T1}<label-volume>
+label-volume-background = ${colors.grey}
 label-volume-foreground = ${colors.white}
-label-muted = 
+label-muted = %{T1}%percentage%%
 label-muted-background = ${colors.grey}
-label-muted-foreground = ${colors.blue}
-ramp-volume-0 = 
-ramp-volume-1 = 
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.blue}
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.white}
+label-muted-foreground = ${colors.red}
 
 [module/backlight]
 type = internal/backlight
 card = intel_backlight
-format = %{T1} <label>
-format-background = ${colors.grey}
-format-foreground = ${colors.blue}
+format = %{T1}<label>
 label-background = ${colors.grey}
 label-foreground = ${colors.white}
-
-bar-width = 10
-bar-format-background = ${colors.grey}
-bar-foreground-0 = ${colors.blue}
-bar-gradient = false
-bar-indicator = |
-bar-indicator-font = 2
-bar-indicator-background = ${colors.grey}
-bar-fill = ─
-bar-fill-background = ${colors.grey}
-bar-fill-font = 2
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-background= ${colors.grey}
-bar-empty-foreground = ${colors.white}
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 poll-interval = 60
-format-charging = %{T1}<ramp-capacity> <label-charging>
-format-discharging = %{T1}<ramp-capacity> <label-discharging>
+format-charging = %{T1}<label-charging>
+format-discharging = %{T1}<label-discharging>
 format-charging-background = ${colors.grey}
 format-discharging-background = ${colors.grey}
 label-discharging-foreground = ${colors.white}
 label-charging-foreground = ${colors.white}
-bar-capacity-width = 10
-bar-capacity-foreground-0 = ${colors.blue}
-bar-capacity-gradient = false
-bar-capacity-indicator = |
-bar-capacity-indicator-font = 2
-bar-capacity-fill = ─
-bar-capacity-fill-font = 2
-bar-capacity-empty = ─
-bar-capacity-empty-font = 2
-bar-capacity-empty-foreground = ${colors.white}
-ramp-capacity-foreground = ${colors.blue}
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
 
 [module/date]
 type = custom/script
 exec = date "+ %a %x"
-format = %{T1} <label>
-format-background  = ${colors.blue}
-format-foreground = ${colors.grey}
-label-foreground = ${colors.white}
+format = %{T1}<label>
+format-background = ${colors.blue}
+format-foreground = ${colors.white}
 interval = 1
 
 [module/time]
 type = custom/script
 exec = date "+ %T"
-format = %{T1} <label>
+format = %{T1}<label>
 format-background = ${colors.blue}
-format-foreground = ${colors.grey}
-label-foreground = ${colors.white}
+format-foreground = ${colors.white}
 interval = 1
