@@ -10,7 +10,7 @@ bindsym $mod+Return exec urxvt
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec dmenu_run -nb "#000000" -sb "#000000" -sf "#4c7899"
+bindsym $mod+d exec dmenu_run
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -90,7 +90,9 @@ for_window [window_role="task_dialog"] floating enable
 for_window [title="Library"] floating enable
 for_window [title="python3"] floating enable
 
-bindsym $mod+s exec firejail --net=eno1 --apparmor --seccomp --caps --caps.drop=all --nonewprivs --private-tmp --private-cache --private-dev --disable-mnt --netfilter --nodvd --notv --nou2f --nodbus firefox
+exec_always urxvt -e sudo chkboot
+
+bindsym $mod+s exec firejail --net=wlp3s0 --apparmor --seccomp --caps --caps.drop=all --nonewprivs --private-tmp --private-cache --private-dev --disable-mnt --netfilter --nodvd --notv --nou2f --nodbus firefox
 
 bindsym $mod+v exec GTK_THEME=Adwaita:dark virt-manager
 bindsym $mod+q exec urxvt -e python3 -q
@@ -106,8 +108,8 @@ bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle # && pkill -RTM
 # fixes output stuck muted while Master is toggled
 bindsym $mod+Control+t exec --no-startup-id amixer -D pulse sset Master toggle
 
-#bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
-#bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc  10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc  10
 
 #bindsym $mod+r gaps outer current plus 15
 #bindsym $mod+t gaps inner current plus 15
