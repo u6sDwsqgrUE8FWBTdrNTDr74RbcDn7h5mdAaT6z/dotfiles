@@ -1,8 +1,8 @@
 [colors]
 black = #000000
 white = #ffffff
-grey = #333333
-blue = #285577
+c1 = #1a1a1a
+c2= #101010
 red = #fb4934
 bg = #000000
 fg = #ffffff
@@ -18,83 +18,78 @@ line-size = 3
 font-0 = :size=8:antialias=true;1
 font-1 = Source Code Pro:size=15:antialias=true;5
 
-modules-left = i3 lsep_greyFG_blueBG title lsep_blueFG_bgBG
+modules-left = i3 lsep_c1FG_c2BG title lsep_c2FG_bgBG
 modules-center = 
-modules-right = rsep_greyFG_bgBG pulseaudio grey2spaces risep_whiteFG_greyBG backlight grey2spaces risep_whiteFG_greyBG battery grey2spaces rsep_blueFG_greyBG date blue2spaces risep_whiteFG_blueBG time bluespace
+modules-right = rsep_c2FG_bgBG pulseaudio c22spaces risep_whiteFG_c2BG backlight c22spaces risep_whiteFG_c2BG battery c22spaces rsep_c1FG_c2BG date c12spaces risep_whiteFG_c1BG time c1space
 
 [module/lsep_greyFG_bgBG]
 type = custom/text
 content = %{T2}
 content-background = ${colors.bg}
-content-foreground = ${colors.grey}
+content-foreground = ${colors.c1}
 
-[module/lsep_greyFG_blueBG]
+[module/lsep_c1FG_c2BG]
 type = custom/text
 content = %{T2}
-content-background = ${colors.blue}
-content-foreground = ${colors.grey}
+content-background = ${colors.c2}
+content-foreground = ${colors.c1}
 
-[module/lsep_blueFG_bgBG]
+[module/lsep_c2FG_bgBG]
 type = custom/text
 content = %{T2}
 content-background = ${colors.bg}
-content-foreground = ${colors.blue}
+content-foreground = ${colors.c2}
 
-[module/rsep_greyFG_bgBG]
+[module/rsep_c2FG_bgBG]
 type = custom/text
 content = %{T2}
 content-background = ${colors.bg}
-content-foreground = ${colors.grey}
+content-foreground = ${colors.c2}
 
-[module/rsep_blueFG_greyBG]
+[module/rsep_c1FG_c2BG]
 type = custom/text
 content = %{T2}
-content-background = ${colors.grey}
-content-foreground = ${colors.blue}
+content-background = ${colors.c2}
+content-foreground = ${colors.c1}
 
-[module/risep_whiteFG_blueBG]
+[module/risep_whiteFG_c1BG]
 type = custom/text
 content = %{T2}
-content-background = ${colors.blue}
+content-background = ${colors.c1}
 content-foreground = ${colors.white}
 
-[module/risep_whiteFG_greyBG]
+[module/risep_whiteFG_c2BG]
 type = custom/text
 content = %{T2}
-content-background = ${colors.grey}
+content-background = ${colors.c2}
 content-foreground = ${colors.white}
 
-[module/bluespace]
+[module/c1space]
 type = custom/text
 content = " " 
-content-background = ${colors.blue}
+content-background = ${colors.c1}
 
-[module/blue2spaces]
+[module/c12spaces]
 type = custom/text
 content = "  " 
-content-background = ${colors.blue}
+content-background = ${colors.c1}
 
-[module/greyspace]
-type = custom/text
-content = " " 
-content-background = ${colors.grey}
-
-[module/grey2spaces]
+[module/c22spaces]
 type = custom/text
 content = "  "
-content-background = ${colors.grey}
+content-background = ${colors.c2}
 
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
-format-background = ${colors.grey}
+format-background = ${colors.c1}
 enable-scroll = false
 enable-click = false
 label-unfocused = %index%
 label-unfocused-padding = 2
 label-focused = %index%
 label-focused-foreground = ${colors.white}
-label-focused-underline = ${colors.blue}
+label-focused-underline = #285577
 label-focused-padding = 2
 label-urgent = %index%
 label-urgent-foreground = ${colors.white}
@@ -104,24 +99,24 @@ label-urgent-padding = 2
 [module/title]
 type = internal/xwindow
 label = %{T1}%title%
-label-maxlen = 260
-format-background = ${colors.blue}
+label-maxlen = 200
+format-background = ${colors.c2}
 format-foreground = ${colors.white}
 
 [module/pulseaudio]
 type = internal/pulseaudio
 format-volume = %{T1}<label-volume>
-label-volume-background = ${colors.grey}
+label-volume-background = ${colors.c2}
 label-volume-foreground = ${colors.white}
 label-muted = %{T1}%percentage%%
-label-muted-background = ${colors.grey}
+label-muted-background = ${colors.c2}
 label-muted-foreground = ${colors.red}
 
 [module/backlight]
 type = internal/backlight
 card = intel_backlight
 format = %{T1}<label>
-label-background = ${colors.grey}
+label-background = ${colors.c2}
 label-foreground = ${colors.white}
 
 [module/battery]
@@ -130,16 +125,19 @@ battery = BAT0
 poll-interval = 60
 format-charging = %{T1}<label-charging>
 format-discharging = %{T1}<label-discharging>
-format-charging-background = ${colors.grey}
-format-discharging-background = ${colors.grey}
+format-charging-background = ${colors.c2}
+format-discharging-background = ${colors.c2}
 label-discharging-foreground = ${colors.white}
 label-charging-foreground = ${colors.white}
+format-full = %{T1}<label-full>
+label-full-background = ${colors.c2}
+label-full-foreground = ${colors.white}
 
 [module/date]
 type = custom/script
 exec = date "+ %a %x"
 format = %{T1}<label>
-format-background = ${colors.blue}
+format-background = ${colors.c1}
 format-foreground = ${colors.white}
 interval = 1
 
@@ -147,6 +145,6 @@ interval = 1
 type = custom/script
 exec = date "+ %T"
 format = %{T1}<label>
-format-background = ${colors.blue}
+format-background = ${colors.c1}
 format-foreground = ${colors.white}
 interval = 1

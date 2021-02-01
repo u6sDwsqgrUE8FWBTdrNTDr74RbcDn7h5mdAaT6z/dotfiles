@@ -1,25 +1,17 @@
 runtime! archlinux.vim
 
+filetype plugin on
+call plug#begin('~/.vim/plugged')
+Plug 'lervag/vimtex'
+call plug#end()
+
 syntax on
 set background=dark
+set title
 set number relativenumber
 set showcmd
 set hlsearch
 set nomodeline
 set ruler
 set laststatus=2
-
-let g:airline_theme='simple'
-let g:airline_powerline_fonts = 1
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+set clipboard+=unnamedplus
