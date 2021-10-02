@@ -6,17 +6,9 @@ Plug 'lervag/vimtex'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'tomasiser/vim-code-dark'
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'yamatsum/nvim-cursorline'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
-lua require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
-lua require'lspconfig'.texlab.setup{on_attach=require'completion'.on_attach}
-lua require'lspconfig'.ccls.setup{on_attach=require'completion'.on_attach}
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 set t_Co=256
 let g:codedark_conservative = 1
