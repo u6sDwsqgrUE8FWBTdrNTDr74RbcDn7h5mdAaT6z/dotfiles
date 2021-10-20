@@ -37,4 +37,3 @@ set nomodeline
 set ruler
 set laststatus=2
 set clipboard+=unnamedplus
-set mouse+=a
