@@ -1,7 +1,5 @@
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[blue]%}%n%{$fg[white]%}@%{$fg[cyan]%}%M %{$fg[white]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-powerline-daemon -q
-. /usr/share/powerline/bindings/zsh/powerline.zsh
 
 HISTSIZE=50
 SAVEHIST=50
@@ -21,5 +19,6 @@ alias dsh='dd if=/dev/null of=.zsh_history status=none'
 alias dph='dd if=/dev/null of=.python_history status=none'
 alias ulb='sudo usbguard list-devices -b'
 alias ua='sudo usbguard allow-device'
+alias es='gpg -c --s2k-cipher-algo AES256 --s2k-digest-algo SHA512 --s2k-count 65536'
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
