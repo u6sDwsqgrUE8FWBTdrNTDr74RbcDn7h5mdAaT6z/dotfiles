@@ -57,6 +57,19 @@ nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
+nnoremap <A-h> :bp<CR>
+nnoremap <A-l> :bn<CR>
+nnoremap <C-w> :bd<CR>
+nnoremap <A-1> :1b<CR>
+nnoremap <A-2> :2b<CR>
+nnoremap <A-3> :3b<CR>
+nnoremap <A-4> :4b<CR>
+nnoremap <A-5> :5b<CR>
+nnoremap <A-6> :6b<CR>
+nnoremap <A-7> :7b<CR>
+nnoremap <A-8> :8b<CR>
+nnoremap <A-9> :9b<CR>
+
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
