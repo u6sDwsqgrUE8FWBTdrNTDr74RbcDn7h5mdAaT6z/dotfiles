@@ -7,6 +7,7 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
@@ -59,7 +60,6 @@ nmap <silent> <A-Right> :wincmd l<CR>
 
 nnoremap <A-h> :bp<CR>
 nnoremap <A-l> :bn<CR>
-nnoremap <C-w> :bd<CR>
 nnoremap <A-1> :1b<CR>
 nnoremap <A-2> :2b<CR>
 nnoremap <A-3> :3b<CR>
