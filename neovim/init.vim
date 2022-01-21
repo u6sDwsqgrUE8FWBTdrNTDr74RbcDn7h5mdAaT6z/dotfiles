@@ -39,6 +39,11 @@ set clipboard+=unnamedplus
 set mouse+=a
 set signcolumn=yes
 
+set spelllang=en_us,da
+set spellsuggest=best,9
+nnoremap <silent> <F11> :set spell!<cr>
+inoremap <silent> <F11> <C-O>:set spell!<cr>
+
 let mapleader=","
 
 let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-pyright', 'coc-texlab']
@@ -90,6 +95,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 let g:UltiSnipsExpandTrigger="<c-s>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+nnoremap <C-i> :let @z=input('') <bar> norm "zp<CR>
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "nvim-snippets"]
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
