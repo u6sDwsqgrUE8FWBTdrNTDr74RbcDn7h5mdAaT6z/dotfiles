@@ -3,8 +3,8 @@ runtime! archlinux.vim
 filetype plugin on
 call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
-Plug 'arcticicestudio/nord-vim'
-Plug 'vim-airline/vim-airline'
+Plug 'shaunsingh/nord.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -51,8 +51,15 @@ let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-pyright', 'coc-tex
 set t_Co=256
 colorscheme nord
 
-let g:airline_theme = 'nord'
-let g:airline_symbols_ascii = 1
+lua << EOF
+require('lualine').setup {
+    options = {
+      theme = 'nord',
+      section_separators = '',
+      component_separators = '|' 
+    }
+  }
+EOF
 
 lua << EOF
 require'nvim-treesitter.configs'.setup {
