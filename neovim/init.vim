@@ -18,6 +18,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
 filetype plugin indent on
@@ -53,9 +54,30 @@ colorscheme nord
 let g:airline_theme = 'nord'
 let g:airline_symbols_ascii = 1
 
-lua <<  EOF
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+  sync_install = true,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = nil,
+    },
+  }
+EOF
+
+lua << EOF
 require'nvim-web-devicons'.setup {
  default = true;
+}
+EOF
+
+lua << EOF
+require'nvim-tree'.setup {
 }
 EOF
 
@@ -63,6 +85,14 @@ let g:NERDCreateDefaultMappings = 1
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDTrimTrailingWhitespace = 1
+
+let g:nvim_tree_git_hl = 1
+let g:nvim_tree_highlight_opened_files = 1
+let g:nvim_tree_respect_buf_cwd = 1
+let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 }
+
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
 
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
