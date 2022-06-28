@@ -1,0 +1,28 @@
+#!/bin/sh
+
+if [ -d "/sys/class/power_supply/BAT0" ]; then
+		batt_state=$(cat /sys/class/power_supply/BAT0/status)
+		batt_capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+
+		if [ ! "$batt_state" = "Charging" ]; then
+				if [ "$batt_capacity" -lt 20 ]; then
+						batt_icon=""
+				elif [ "$batt_capacity" -lt 25 ]; then
+						batt_icon=""
+				elif [ "$batt_capacity" -lt 50 ]; then
+						batt_icon=""
+				elif [ "$batt_capacity" -lt 75 ]; then
+						batt_icon=""
+				elif [ "$batt_capacity" -gt 80 ]; then
+						batt_icon=""
+				fi
+		fi
+
+		[ "$batt_state" = "Charging" ] && batt_icon=""
+		batt="${batt_icon} $(cat /sys/class/power_supply/BAT0/capacity)"
+		batt="${batt}%"
+else
+		batt="none"
+fi
+
+echo "$batt"

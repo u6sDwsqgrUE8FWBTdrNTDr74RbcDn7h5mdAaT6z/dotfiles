@@ -56,12 +56,12 @@ terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
-autostart = {
-    "nm-applet --indicator"
-}
-
 browser = "firefox"
 screenlocker = "slock"
+
+autostart = {
+    "nm-applet --indicator",
+}
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -116,7 +116,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-mytextclock.format = '%a %x <b>%X</b>'
+mytextclock.format = '%a %F <b>%X</b>'
 mytextclock.refresh = 1
 
 local cw = calendar_widget{placement = 'top_right'}
@@ -219,7 +219,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            spacing = 5,
+            spacing = 10,
             wibox.widget.systray(),
             brightness_widget{program = 'xbacklight', type = 'icon_and_text', percentage = true, step = 0},
             volume_widget{widget_type = 'icon_and_text'},
@@ -370,7 +370,9 @@ globalkeys = gears.table.join(
 
     -- Programs
     awful.key({ modkey,           }, "s", function () awful.spawn(browser) end,
-              {description = "open a browser", group = "programs"})
+              {description = "open a browser", group = "programs"}),
+    awful.key({ modkey,           }, "v", function () awful.spawn("virt-manager") end,
+              {description = "open VMM", group = "programs"})
 )
 
 clientkeys = gears.table.join(
