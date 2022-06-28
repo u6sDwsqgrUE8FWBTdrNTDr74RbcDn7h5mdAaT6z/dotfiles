@@ -1,2 +1,5 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-exec i3
+
+xec xautolock -secure -time 5 -locker slock &
+exec dwmblocks &
+exec dwm
