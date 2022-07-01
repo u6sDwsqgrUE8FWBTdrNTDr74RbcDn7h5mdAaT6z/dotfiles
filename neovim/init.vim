@@ -46,7 +46,7 @@ inoremap <silent> <F11> <C-O>:set spell!<cr>
 
 let mapleader=","
 
-let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-pyright', 'coc-texlab']
+let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-pyright', 'coc-texlab', "coc-sh", "coc-html", "coc-markdownlint"]
 
 set t_Co=256
 colorscheme nord
@@ -133,6 +133,27 @@ let g:UltiSnipsJumpForwardTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 nnoremap <C-i> :let @z=input('') <bar> norm "zp<CR>
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "nvim-snippets"]
+
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <leader>rn <Plug>(coc-rename)
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :

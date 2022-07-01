@@ -6,13 +6,12 @@ if [ -d "/sys/class/power_supply/BAT0" ]; then
 
 		if [ ! "$batt_state" = "Charging" ]; then
 				if [ "$batt_capacity" -lt 20 ]; then
-						batt_icon="! "
+						batt_icon=""
 				fi
 		fi
 
-		[ "$batt_state" = "Charging" ] && batt_icon="+ "
 		batt="${batt_icon}$(cat /sys/class/power_supply/BAT0/capacity)"
 		batt="${batt}%"
 
-		echo "$batt"
+		echo "$batt"
 fi
