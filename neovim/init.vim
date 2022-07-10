@@ -15,10 +15,13 @@ Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 call plug#end()
 
 filetype plugin indent on
@@ -41,7 +44,7 @@ set signcolumn=yes
 
 set spelllang=en_us,da
 set spellsuggest=best,9
-nnoremap <silent> <F11> :set spell!<cr>
+nnoremap <silent> <F12> :set spell!<cr>
 inoremap <silent> <F11> <C-O>:set spell!<cr>
 
 let mapleader=","
@@ -59,6 +62,14 @@ require('lualine').setup {
       component_separators = '|' 
     }
   }
+EOF
+
+lua << EOF
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+}
 EOF
 
 lua << EOF
@@ -88,6 +99,75 @@ require'nvim-tree'.setup {
 }
 EOF
 
+lua << EOF
+local dap = require('dap')
+
+dap.adapters.python = {
+  type = 'executable';
+  command = 'python';
+  args = { '-m', 'debugpy.adapter' };
+}
+dap.configurations.python = {
+  {
+    type = 'python';
+    request = 'launch';
+    name = "Launch file";
+
+    program = "${file}";
+    pythonPath = function()
+      local cwd = vim.fn.getcwd()
+      if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+        return cwd .. '/venv/bin/python'
+      elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+        return cwd .. '/.venv/bin/python'
+      else
+        return '/usr/bin/python'
+      end
+    end;
+  },
+}
+
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode',
+  name = 'lldb'
+}
+
+dap.configurations.cpp = {
+  {
+    name = 'Launch',
+    type = 'lldb',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+  },
+}
+
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
+EOF
+
+lua << EOF
+require("dapui").setup()
+EOF
+
+nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
+nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
+nnoremap <silent> <C-b> <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>bc <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>dl <Cmd>lua require'dap'.run_last()<CR>
+
+nnoremap <silent> <leader>db :lua require("dapui").toggle()<CR>
+nnoremap <C-k> <Cmd>lua require("dapui").eval()<CR>
+
 let g:NERDCreateDefaultMappings = 1
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -98,8 +178,8 @@ let g:nvim_tree_highlight_opened_files = 1
 let g:nvim_tree_respect_buf_cwd = 1
 let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 }
 
-nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <silent> <C-n> :NvimTreeToggle<CR>
+nnoremap <silent> <leader>r :NvimTreeRefresh<CR>
 
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
