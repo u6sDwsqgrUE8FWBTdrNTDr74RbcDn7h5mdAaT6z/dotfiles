@@ -3,7 +3,7 @@ runtime! archlinux.vim
 filetype plugin on
 call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
-Plug 'shaunsingh/nord.nvim'
+Plug 'Mofiqul/vscode.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
@@ -52,12 +52,12 @@ let mapleader=","
 let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-pyright', 'coc-texlab', "coc-sh", "coc-html", "coc-markdownlint"]
 
 set t_Co=256
-colorscheme nord
+colorscheme vscode
 
 lua << EOF
 require('lualine').setup {
     options = {
-      theme = 'nord',
+      theme = 'vscode',
       section_separators = '',
       component_separators = '|' 
     }
@@ -66,9 +66,7 @@ EOF
 
 lua << EOF
 require("indent_blankline").setup {
-    space_char_blankline = " ",
     show_current_context = true,
-    show_current_context_start = true,
 }
 EOF
 
