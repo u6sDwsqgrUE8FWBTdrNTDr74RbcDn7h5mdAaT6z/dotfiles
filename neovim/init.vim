@@ -22,6 +22,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'aserowy/tmux.nvim'
 call plug#end()
 
 filetype plugin indent on
@@ -153,6 +154,37 @@ lua << EOF
 require("dapui").setup()
 EOF
 
+lua << EOF
+require("tmux").setup(
+{
+  copy_sync = {
+    enable = true,
+    ignore_buffers = { empty = false },
+    redirect_to_clipboard = true,
+    register_offset = 0,
+    sync_clipboard = true,
+    sync_deletes = true,
+    sync_unnamed = true,
+    },
+
+  navigation = {
+    cycle_navigation = false,
+    enable_default_keybindings = true,
+    persist_zoom = false,
+    },
+
+  resize = {
+    enable_default_keybindings = true,
+    resize_step_x = 1,
+    resize_step_y = 1,
+    },
+}
+)
+EOF
+
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+
 nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
 nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
 nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
@@ -164,7 +196,7 @@ nnoremap <silent> <leader>dr <Cmd>lua require'dap'.repl.open()<CR>
 nnoremap <silent> <leader>dl <Cmd>lua require'dap'.run_last()<CR>
 
 nnoremap <silent> <leader>db :lua require("dapui").toggle()<CR>
-nnoremap <C-k> <Cmd>lua require("dapui").eval()<CR>
+nnoremap <leader>e <Cmd>lua require("dapui").eval()<CR>
 
 let g:NERDCreateDefaultMappings = 1
 let g:NERDSpaceDelims = 1
@@ -176,7 +208,7 @@ let g:nvim_tree_highlight_opened_files = 1
 let g:nvim_tree_respect_buf_cwd = 1
 let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 }
 
-nnoremap <silent> <C-n> :NvimTreeToggle<CR>
+nnoremap <silent> <C-f> :NvimTreeToggle<CR>
 nnoremap <silent> <leader>r :NvimTreeRefresh<CR>
 
 nmap <silent> <A-Up> :wincmd k<CR>
@@ -203,11 +235,12 @@ nnoremap <silent> <C-s>    :BufferPick<CR>
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fc <cmd>Telescope git_commits<cr>
+nnoremap <leader>fb <cmd>Telescope git_bcommits<cr>
+nnoremap <leader>fr <cmd>Telescope lsp_references<cr>
 
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 nnoremap <C-i> :let @z=input('') <bar> norm "zp<CR>
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "nvim-snippets"]
