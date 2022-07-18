@@ -13,6 +13,7 @@ _comp_options+=(globdots)
 
 bindkey -v
 export KEYTIMEOUT=1
+export VISUAL=nvim
 export EDITOR=nvim
 
 alias ls='ls --color=auto'

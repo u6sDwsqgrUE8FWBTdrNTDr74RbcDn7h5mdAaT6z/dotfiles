@@ -8,6 +8,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
@@ -17,6 +18,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'p00f/nvim-ts-rainbow'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -60,7 +62,8 @@ require('lualine').setup {
     options = {
       theme = 'vscode',
       section_separators = '',
-      component_separators = '|' 
+      component_separators = '|',
+      globalstatus = true,
     }
   }
 EOF
@@ -80,7 +83,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
   rainbow = {
-      enable = true,
+      enable = false,
       extended_mode = true,
       max_file_lines = nil,
     },
@@ -181,9 +184,6 @@ require("tmux").setup(
 }
 )
 EOF
-
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
 
 nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
 nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
