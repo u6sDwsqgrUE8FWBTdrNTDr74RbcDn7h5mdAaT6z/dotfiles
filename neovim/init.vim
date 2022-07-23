@@ -61,8 +61,8 @@ lua << EOF
 require('lualine').setup {
     options = {
       theme = 'vscode',
-      section_separators = '',
       component_separators = '|',
+      section_separators = '',
       globalstatus = true,
     }
   }
@@ -232,7 +232,6 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fb <cmd>Telescope git_bcommits<cr>
-nnoremap <leader>fr <cmd>Telescope lsp_references<cr>
 
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
