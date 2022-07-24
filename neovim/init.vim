@@ -78,6 +78,7 @@ lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
   sync_install = true,
+  ignore_install = { "latex" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -97,8 +98,15 @@ require'nvim-web-devicons'.setup {
 EOF
 
 lua << EOF
-require'nvim-tree'.setup {
-}
+require'nvim-tree'.setup ({
+  view = {
+    adaptive_size = true,
+    },
+  renderer = {
+    highlight_git = true,
+    highlight_opened_files = "all",
+    },
+  })
 EOF
 
 lua << EOF
