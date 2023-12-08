@@ -13,6 +13,7 @@ _comp_options+=(globdots)
 
 bindkey -v
 export KEYTIMEOUT=1
+export TERM='xterm-256color'
 export VISUAL=nvim
 export EDITOR=nvim
 
