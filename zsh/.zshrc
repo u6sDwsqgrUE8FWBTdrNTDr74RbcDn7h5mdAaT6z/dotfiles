@@ -24,3 +24,9 @@ alias ua='sudo usbguard allow-device'
 alias es='gpg -c --s2k-cipher-algo AES256 --s2k-digest-algo SHA512 --s2k-count 65536'
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+typeset -U path PATH
+path=(~/.local/bin $path)
+export PATH
+
+bindkey -s ^f "tmux-sessionizer\n"
