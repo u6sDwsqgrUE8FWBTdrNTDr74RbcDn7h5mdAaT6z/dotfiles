@@ -6,7 +6,7 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.color_scheme = 'Vs Code Dark+ (Gogh)'
+config.color_scheme = 'tokyonight_night'
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' } -- Disables ligatures
 config.window_decorations = 'RESIZE'
 config.hide_tab_bar_if_only_one_tab = true
