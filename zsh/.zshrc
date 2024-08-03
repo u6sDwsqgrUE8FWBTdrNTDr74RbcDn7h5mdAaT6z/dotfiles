@@ -22,8 +22,9 @@ alias dsh='dd if=/dev/null of=.zsh_history status=none'
 alias ulb='sudo usbguard list-devices -b'
 alias ua='sudo usbguard allow-device'
 alias es='gpg -c --s2k-cipher-algo AES256 --s2k-digest-algo SHA512 --s2k-count 65536'
+alias vg='valgrind --leak-check=full --track-origins=yes -v --log-file=vg_logfile.out'
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 typeset -U path PATH
 path=(~/.local/bin $path)
